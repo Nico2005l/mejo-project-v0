@@ -453,15 +453,15 @@
 
   @media (min-width: 1024px) {
     .product-image-container {
-      height: 400px; /* Aumentado de 320px a 400px */
+      height: 320px; /* Restaurado al valor original */
     }
 
     .featured-image-container {
-      height: 380px; /* Aumentado de 280px a 380px */
+      height: 280px; /* Restaurado al valor original */
     }
 
     .product-detail-container {
-      height: 520px; /* Aumentado de 450px a 520px */
+      height: 450px; /* Restaurado al valor original */
     }
   }
 
