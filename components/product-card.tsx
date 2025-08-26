@@ -56,9 +56,6 @@ export function ProductCard({ producto, variant = "default", priority = false }:
           </div>
 
           <div className="pt-3 sm:pt-4 mt-auto">
-            <span className="text-base sm:text-lg font-body text-blue-main mb-3 sm:mb-4 block">
-              {producto.porciones} porciones
-            </span>
             <Button className="btn-handmade w-full sm:w-auto">Ver Detalles</Button>
           </div>
         </div>

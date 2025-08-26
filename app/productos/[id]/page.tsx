@@ -166,10 +166,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               {product.nombre}
             </h1>
             <p className="text-base sm:text-lg font-body text-brown-chocolate leading-relaxed">{product.descripcion}</p>
-            <p className="text-base sm:text-lg font-body text-brown-chocolate">
-              <span className="font-semibold">Porciones:</span>{" "}
-              <span className="text-blue-main font-bold">{product.porciones}</span>
-            </p>
+            
             <div>
               <h3 className="text-lg sm:text-xl font-display font-semibold text-blue-main mb-3">Beneficios</h3>
               <ul className="list-disc list-inside text-brown-chocolate font-body space-y-1">
