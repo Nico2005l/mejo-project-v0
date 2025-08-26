@@ -356,7 +356,7 @@
   /* Enhanced Product Image Containers - Fully Responsive */
   .product-image-container {
     width: 100%;
-    height: 200px;
+    height: 280px; /* Aumentado de 200px a 280px */
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -378,7 +378,7 @@
   /* Featured images for homepage */
   .featured-image-container {
     width: 100%;
-    height: 180px;
+    height: 260px; /* Aumentado de 180px a 260px */
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -400,7 +400,7 @@
   /* Product detail images */
   .product-detail-container {
     width: 100%;
-    height: 250px;
+    height: 350px; /* Aumentado de 250px a 350px */
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -417,43 +417,51 @@
   /* Responsive breakpoints for images */
   @media (min-width: 640px) {
     .product-image-container {
-      height: 240px;
+      height: 320px; /* Aumentado de 240px a 320px */
     }
 
     .featured-image-container {
-      height: 220px;
+      height: 300px; /* Aumentado de 220px a 300px */
     }
 
     .product-detail-container {
-      height: 300px;
+      height: 400px; /* Aumentado de 300px a 400px */
+    }
+
+    .instagram-image-container {
+      height: 240px;
     }
   }
 
   @media (min-width: 768px) {
     .product-image-container {
-      height: 280px;
+      height: 360px; /* Aumentado de 280px a 360px */
     }
 
     .featured-image-container {
-      height: 240px;
+      height: 340px; /* Aumentado de 240px a 340px */
     }
 
     .product-detail-container {
-      height: 400px;
+      height: 480px; /* Aumentado de 400px a 480px */
+    }
+
+    .instagram-image-container {
+      height: 280px;
     }
   }
 
   @media (min-width: 1024px) {
     .product-image-container {
-      height: 320px;
+      height: 400px; /* Aumentado de 320px a 400px */
     }
 
     .featured-image-container {
-      height: 280px;
+      height: 380px; /* Aumentado de 280px a 380px */
     }
 
     .product-detail-container {
-      height: 450px;
+      height: 520px; /* Aumentado de 450px a 520px */
     }
   }
 
@@ -477,7 +485,7 @@
 
   .instagram-image-container {
     width: 100%;
-    height: 200px;
+    height: 280px; /* Aumentado de 200px a 280px */
     position: relative;
     overflow: hidden;
     background-color: #f8f9fa;
@@ -521,7 +529,7 @@
   /* Responsive adjustments for Instagram cards */
   @media (min-width: 640px) {
     .instagram-image-container {
-      height: 240px;
+      height: 320px; /* Aumentado de 240px a 320px */
     }
 
     .instagram-post-info {
@@ -531,7 +539,7 @@
 
   @media (min-width: 768px) {
     .instagram-image-container {
-      height: 280px;
+      height: 360px; /* Aumentado de 280px a 360px */
     }
   }
 
