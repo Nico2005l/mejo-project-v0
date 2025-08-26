@@ -23,7 +23,7 @@ export function ProductCard({ producto, variant = "default", priority = false }:
   const cardHeight =
     variant === "featured"
       ? "h-auto min-h-[400px] sm:min-h-[480px]"
-      : "h-auto min-h-[500px] sm:min-h-[600px] lg:min-h-[640px]"
+      : "h-auto min-h-[580px] sm:min-h-[680px] lg:min-h-[720px]"
 
   return (
     <Link href={`/productos/${producto.id}`} className="group relative block">
@@ -50,7 +50,7 @@ export function ProductCard({ producto, variant = "default", priority = false }:
             <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-semibold text-blue-accent tracking-wide leading-tight">
               {producto.nombre}
             </h3>
-            <p className="text-sm sm:text-base font-body text-brown-chocolate/80 leading-relaxed line-clamp-3 px-1">
+            <p className="text-sm sm:text-base font-body text-brown-chocolate/80 leading-relaxed px-1">
               {producto.descripcion}
             </p>
           </div>

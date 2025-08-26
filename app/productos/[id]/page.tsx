@@ -27,13 +27,13 @@ export default function ProductPage({ params }: ProductPageProps) {
   const nextProduct = productIndex < productos.length - 1 ? productos[productIndex + 1] : null
 
   return (
-    <div className="min-h-screen py-8 px-4 md:py-16 md:px-6 bg-cream-warm paper-texture">
+    <div className="min-h-screen py-4 sm:py-8 px-3 sm:px-4 md:py-16 md:px-6 bg-cream-warm paper-texture">
       {/* Enhanced Navigation Header */}
-      <div className="max-w-4xl mx-auto mb-8">
-        <div className="flex items-center justify-between mb-6">
+      <div className="max-w-4xl mx-auto mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
           {/* Back to Products */}
           <Link href="/productos">
-            <Button className="flex items-center gap-2 bg-blue-light/50 text-blue-accent hover:bg-blue-light border border-blue-main/20 rounded-full px-4 py-2">
+            <Button className="flex items-center gap-2 bg-blue-light/50 text-blue-accent hover:bg-blue-light border border-blue-main/20 rounded-full px-3 sm:px-4 py-2 text-sm sm:text-base">
               <ArrowLeft className="w-4 h-4" />
               <span className="hidden sm:inline">Todos los productos</span>
               <span className="sm:hidden">Productos</span>
@@ -42,7 +42,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
           {/* Product Counter */}
           <div className="text-center">
-            <span className="text-sm font-body text-brown-chocolate/60">
+            <span className="text-xs sm:text-sm font-body text-brown-chocolate/60">
               Producto {productIndex + 1} de {productos.length}
             </span>
           </div>
@@ -52,8 +52,8 @@ export default function ProductPage({ params }: ProductPageProps) {
             {productos.map((_, index) => (
               <Link key={index} href={`/productos/${productos[index].id}`}>
                 <div
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === productIndex ? "bg-blue-main w-6" : "bg-blue-main/30 hover:bg-blue-main/60"
+                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
+                    index === productIndex ? "bg-blue-main w-4 sm:w-6" : "bg-blue-main/30 hover:bg-blue-main/60"
                   }`}
                 />
               </Link>
@@ -62,13 +62,13 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
 
         {/* Enhanced Previous/Next Navigation */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Previous Product */}
           {prevProduct ? (
-            <Link href={`/productos/${prevProduct.id}`} className="flex-1 max-w-xs">
+            <Link href={`/productos/${prevProduct.id}`} className="flex-1 max-w-[120px] sm:max-w-xs">
               <div className="product-nav-card group">
-                <div className="flex items-center gap-3">
-                  <ChevronLeft className="w-5 h-5 text-blue-main group-hover:text-blue-accent transition-colors" />
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-blue-main group-hover:text-blue-accent transition-colors flex-shrink-0" />
                   <div className="product-nav-image">
                     <Image
                       src={prevProduct.imagen || "/placeholder.svg"}
@@ -78,7 +78,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                       sizes="60px"
                     />
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 hidden sm:block">
                     <p className="text-xs font-body text-blue-main/70 mb-1">Anterior</p>
                     <p className="font-display font-semibold text-blue-accent text-sm truncate">{prevProduct.nombre}</p>
                   </div>
@@ -86,12 +86,12 @@ export default function ProductPage({ params }: ProductPageProps) {
               </div>
             </Link>
           ) : (
-            <div className="flex-1 max-w-xs opacity-50">
+            <div className="flex-1 max-w-[120px] sm:max-w-xs opacity-50">
               <div className="product-nav-card-disabled">
-                <div className="flex items-center gap-3">
-                  <ChevronLeft className="w-5 h-5 text-brown-chocolate/30" />
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-brown-chocolate/30 flex-shrink-0" />
                   <div className="product-nav-image bg-gray-200"></div>
-                  <div className="flex-1">
+                  <div className="flex-1 hidden sm:block">
                     <p className="text-xs font-body text-brown-chocolate/40 mb-1">Anterior</p>
                     <p className="font-display text-brown-chocolate/40 text-sm">No disponible</p>
                   </div>
@@ -101,16 +101,16 @@ export default function ProductPage({ params }: ProductPageProps) {
           )}
 
           {/* Current Product Indicator */}
-          <div className="flex-shrink-0 px-4">
-            <div className="w-3 h-3 rounded-full bg-blue-main shadow-lg"></div>
+          <div className="flex-shrink-0 px-2 sm:px-4">
+            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-main shadow-lg"></div>
           </div>
 
           {/* Next Product */}
           {nextProduct ? (
-            <Link href={`/productos/${nextProduct.id}`} className="flex-1 max-w-xs">
+            <Link href={`/productos/${nextProduct.id}`} className="flex-1 max-w-[120px] sm:max-w-xs">
               <div className="product-nav-card group">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 min-w-0 text-right">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex-1 min-w-0 text-right hidden sm:block">
                     <p className="text-xs font-body text-blue-main/70 mb-1">Siguiente</p>
                     <p className="font-display font-semibold text-blue-accent text-sm truncate">{nextProduct.nombre}</p>
                   </div>
@@ -123,20 +123,20 @@ export default function ProductPage({ params }: ProductPageProps) {
                       sizes="60px"
                     />
                   </div>
-                  <ChevronRight className="w-5 h-5 text-blue-main group-hover:text-blue-accent transition-colors" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-main group-hover:text-blue-accent transition-colors flex-shrink-0" />
                 </div>
               </div>
             </Link>
           ) : (
-            <div className="flex-1 max-w-xs opacity-50">
+            <div className="flex-1 max-w-[120px] sm:max-w-xs opacity-50">
               <div className="product-nav-card-disabled">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 text-right">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex-1 text-right hidden sm:block">
                     <p className="text-xs font-body text-brown-chocolate/40 mb-1">Siguiente</p>
                     <p className="font-display text-brown-chocolate/40 text-sm">No disponible</p>
                   </div>
                   <div className="product-nav-image bg-gray-200"></div>
-                  <ChevronRight className="w-5 h-5 text-brown-chocolate/30" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-brown-chocolate/30 flex-shrink-0" />
                 </div>
               </div>
             </div>
@@ -145,10 +145,10 @@ export default function ProductPage({ params }: ProductPageProps) {
       </div>
 
       {/* Main Product Content */}
-      <div className="max-w-4xl mx-auto incomplete-border-box relative mb-16">
+      <div className="max-w-4xl mx-auto incomplete-border-box relative mb-12 sm:mb-16">
         <CornerLines />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start mb-8 sm:mb-12">
           <div className="product-detail-container shadow-md relative">
             <Image
               src={product.imagen || "/placeholder.svg"}
@@ -161,18 +161,22 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Listón de destacado para página de detalles */}
             {product.destacado && <FeaturedRibbon />}
           </div>
-          <div className="space-y-6">
-            <h1 className="text-4xl font-display font-bold text-blue-accent tracking-wide">{product.nombre}</h1>
-            <p className="text-lg font-body text-brown-chocolate leading-relaxed">{product.descripcion}</p>
-            <p className="text-lg font-body text-brown-chocolate">
+          <div className="space-y-4 sm:space-y-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-blue-accent tracking-wide">
+              {product.nombre}
+            </h1>
+            <p className="text-base sm:text-lg font-body text-brown-chocolate leading-relaxed">{product.descripcion}</p>
+            <p className="text-base sm:text-lg font-body text-brown-chocolate">
               <span className="font-semibold">Porciones:</span>{" "}
               <span className="text-blue-main font-bold">{product.porciones}</span>
             </p>
             <div>
-              <h3 className="text-xl font-display font-semibold text-blue-main mb-3">Beneficios</h3>
+              <h3 className="text-lg sm:text-xl font-display font-semibold text-blue-main mb-3">Beneficios</h3>
               <ul className="list-disc list-inside text-brown-chocolate font-body space-y-1">
                 {product.beneficios.map((benefit, i) => (
-                  <li key={i}>{benefit}</li>
+                  <li key={i} className="text-sm sm:text-base">
+                    {benefit}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -180,45 +184,49 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
 
         {/* History Section */}
-        <div className="incomplete-border-box relative bg-blue-light/50 p-6 rounded-lg mb-16">
+        <div className="incomplete-border-box relative bg-blue-light/50 p-4 sm:p-6 rounded-lg mb-12 sm:mb-16">
           <CornerLines />
           <div className="flex items-center gap-3 mb-4">
-            <BookOpen className="w-6 h-6 text-blue-main" />
-            <h3 className="text-xl font-display font-semibold text-blue-main">Historia</h3>
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-blue-main" />
+            <h3 className="text-lg sm:text-xl font-display font-semibold text-blue-main">Historia</h3>
           </div>
-          <p className="text-base font-body text-brown-chocolate leading-relaxed">{product.historia}</p>
+          <p className="text-sm sm:text-base font-body text-brown-chocolate leading-relaxed">{product.historia}</p>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
           <Link href="/productos">
-            <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent">Volver a Productos</Button>
+            <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent w-full sm:w-auto">
+              Volver a Productos
+            </Button>
           </Link>
           <Link href="/contacto">
-            <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent">Hacer Pedido</Button>
+            <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent w-full sm:w-auto">
+              Hacer Pedido
+            </Button>
           </Link>
         </div>
       </div>
 
       {/* Bottom Navigation - Mobile Friendly */}
-      <div className="max-w-4xl mx-auto mt-12">
-        <div className="flex items-center justify-center gap-4 sm:hidden">
+      <div className="max-w-4xl mx-auto mt-8 sm:mt-12">
+        <div className="flex items-center justify-center gap-3 sm:gap-4 sm:hidden">
           {prevProduct && (
             <Link href={`/productos/${prevProduct.id}`}>
-              <Button className="bg-blue-main text-white hover:bg-blue-accent rounded-full p-3">
-                <ChevronLeft className="w-5 h-5" />
+              <Button className="bg-blue-main text-white hover:bg-blue-accent rounded-full p-2 sm:p-3 min-w-[40px] min-h-[40px] sm:min-w-[48px] sm:min-h-[48px]">
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
             </Link>
           )}
 
-          <span className="text-sm font-body text-brown-chocolate/60 px-4">
+          <span className="text-xs sm:text-sm font-body text-brown-chocolate/60 px-3 sm:px-4">
             {productIndex + 1} / {productos.length}
           </span>
 
           {nextProduct && (
             <Link href={`/productos/${nextProduct.id}`}>
-              <Button className="bg-blue-main text-white hover:bg-blue-accent rounded-full p-3">
-                <ChevronRight className="w-5 h-5" />
+              <Button className="bg-blue-main text-white hover:bg-blue-accent rounded-full p-2 sm:p-3 min-w-[40px] min-h-[40px] sm:min-w-[48px] sm:min-h-[48px]">
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
             </Link>
           )}

@@ -937,53 +937,211 @@
   animation-delay: 1.2s;
 }
 
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
+/* Enhanced Mobile Menu Animations */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px) scale(0.95);
   }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  .incomplete-border-box {
-    border: 1px solid #ccc !important;
-    box-shadow: none !important;
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
   }
 }
 
-/* High contrast mode support */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Enhanced Mobile Menu Styles */
+@media (max-width: 767px) {
+  .mobile-menu-item {
+    animation: slideInFromRight 0.4s ease-out forwards;
+  }
+
+  .mobile-menu-item:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .mobile-menu-item:nth-child(2) {
+    animation-delay: 100ms;
+  }
+  .mobile-menu-item:nth-child(3) {
+    animation-delay: 200ms;
+  }
+  .mobile-menu-item:nth-child(4) {
+    animation-delay: 300ms;
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 767px) {
+  .mobile-nav-link {
+    min-height: 60px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-nav-link:active {
+    transform: scale(0.95);
+    background-color: var(--blue-light);
+  }
+}
+
+/* Enhanced focus styles for accessibility */
+.mobile-menu-focus:focus-visible {
+  outline: 3px solid var(--blue-main);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Smooth backdrop blur */
+.mobile-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Prevent text selection in mobile menu */
+.mobile-menu-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Enhanced button hover states */
+.mobile-menu-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.mobile-menu-button:hover {
+  transform: scale(1.05);
+}
+
+.mobile-menu-button:active {
+  transform: scale(0.95);
+}
+
+/* Improved scrollbar for mobile menu */
+.mobile-nav-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-nav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mobile-nav-scroll::-webkit-scrollbar-thumb {
+  background: var(--blue-main);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.mobile-nav-scroll::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+/* High contrast mode improvements */
 @media (prefers-contrast: high) {
-  .incomplete-border-box {
+  .mobile-menu-item {
     border: 2px solid var(--brown-chocolate);
   }
 
-  .btn-handmade {
-    border: 2px solid var(--blue-main);
+  .mobile-menu-item:hover,
+  .mobile-menu-item:focus {
+    border-color: var(--blue-main);
+    background-color: var(--blue-light);
   }
 }
 
-/* Reduced motion support */
+/* Reduced motion support for mobile menu */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .mobile-menu-item {
+    animation: none !important;
   }
 
-  .handmade-line {
-    animation: none;
-    opacity: 0.7;
+  .mobile-menu-button,
+  .mobile-nav-link {
+    transition: none !important;
+  }
+
+  .mobile-menu-overlay {
+    transition: opacity 0.1s ease !important;
   }
 }
 
-/* Dark mode support (if needed in future) */
-@media (prefers-color-scheme: dark) {
-  /* Keep current light theme for brand consistency */
-  /* This can be expanded if dark mode is needed */
+/* Enhanced safe area support */
+@supports (padding: max(0px)) {
+  .mobile-menu-header {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .mobile-menu-footer {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  .mobile-nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.25rem;
+    min-height: 48px;
+    padding: 12px 20px;
+  }
+}
+
+/* Very small screens optimization */
+@media (max-width: 320px) {
+  .mobile-nav-link {
+    font-size: 1.5rem;
+    min-height: 56px;
+    padding: 14px 20px;
+  }
+
+  .mobile-menu-header h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Large mobile screens optimization */
+@media (min-width: 480px) and (max-width: 767px) {
+  .mobile-nav-link {
+    font-size: 2.25rem;
+    min-height: 70px;
+    padding: 18px 28px;
+    max-width: 320px;
+  }
 }

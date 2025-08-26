@@ -15,7 +15,7 @@ export function Footer() {
               Mejo
             </h3>
             <div className="organic-line-separator h-8 mb-6 sm:mb-8"></div>
-            <p className="font-body text-sm sm:text-base text-brown-chocolate/80 leading-relaxed max-w-2xl mx-auto px-4">
+            <p className="font-body text-sm sm:text-base text-brown-chocolate/80 leading-relaxed max-w-2xl mx-auto px-4 mt-4">
               Pastelería artesanal boutique dedicada a crear momentos dulces e inolvidables con productos de la más alta
               calidad.
             </p>
