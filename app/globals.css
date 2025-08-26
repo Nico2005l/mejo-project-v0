@@ -205,6 +205,451 @@
   .no-scroll {
     overflow: hidden !important;
   }
+
+  /* Product Navigation Cards */
+  .product-nav-card {
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .product-nav-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(18, 63, 166, 0.15);
+    border-color: var(--blue-main);
+  }
+
+  .product-nav-card-disabled {
+    background: var(--cream-warm);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 12px;
+    cursor: not-allowed;
+  }
+
+  .product-nav-image {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    flex-shrink: 0;
+  }
+
+  /* Mejoras para el manejo de imágenes de productos */
+  .product-image-container {
+    width: 100%;
+    height: 280px; /* Altura fija para todas las imágenes */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .product-image:hover {
+    transform: scale(1.05);
+  }
+
+  /* Para imágenes destacadas en la página principal */
+  .featured-image-container {
+    width: 100%;
+    height: 240px; /* Altura fija para imágenes destacadas */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .featured-image:hover {
+    transform: scale(1.05);
+  }
+
+  /* Para imágenes de detalle de producto */
+  .product-detail-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+
+  .product-detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .product-image-container {
+      height: 220px;
+    }
+
+    .featured-image-container {
+      height: 200px;
+    }
+
+    .product-detail-container {
+      height: 300px;
+    }
+
+    .product-nav-image {
+      width: 40px;
+      height: 40px;
+    }
+
+    .product-nav-card {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-image-container {
+      height: 200px;
+    }
+
+    .featured-image-container {
+      height: 180px;
+    }
+
+    .product-detail-container {
+      height: 250px;
+    }
+
+    .product-nav-image {
+      width: 36px;
+      height: 36px;
+    }
+
+    .product-nav-card {
+      padding: 8px;
+    }
+  }
+
+  /* Instagram Post Cards */
+  .instagram-post-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .instagram-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .instagram-image-container {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f8f9fa;
+  }
+
+  .instagram-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .instagram-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .instagram-post-card:hover .instagram-overlay {
+    opacity: 1;
+  }
+
+  .instagram-post-card:hover .instagram-image {
+    transform: scale(1.05);
+  }
+
+  .instagram-post-info {
+    padding: 16px;
+    background: white;
+  }
+
+  /* Responsive adjustments for Instagram cards */
+  @media (max-width: 768px) {
+    .instagram-image-container {
+      height: 240px;
+    }
+
+    .instagram-post-info {
+      padding: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .instagram-image-container {
+      height: 200px;
+    }
+
+    .instagram-post-info {
+      padding: 10px;
+    }
+  }
+
+  /* Listón de destacado */
+  .featured-ribbon {
+    position: absolute;
+    top: 12px;
+    right: -8px;
+    z-index: 20;
+    transform: rotate(0deg);
+  }
+
+  .featured-ribbon-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--blue-main) 0%, var(--blue-accent) 100%);
+    color: white;
+    padding: 8px 24px 8px 16px;
+    font-family: var(--font-quicksand), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(18, 63, 166, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px 0 0 4px;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* Efecto de pliegue en el listón */
+  .featured-ribbon-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 16px 0 16px 8px;
+    border-color: transparent transparent transparent var(--blue-accent);
+    filter: brightness(0.8);
+  }
+
+  /* Sombra adicional para el pliegue */
+  .featured-ribbon-content::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: -6px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 14px 0 14px 6px;
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.1);
+    z-index: -1;
+  }
+
+  .featured-ribbon-text {
+    position: relative;
+    z-index: 10;
+    display: block;
+  }
+
+  /* Animación sutil al hacer hover en la tarjeta */
+  .group:hover .featured-ribbon-content {
+    transform: translateX(2px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(18, 63, 166, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Versión más pequeña para móviles */
+  @media (max-width: 768px) {
+    .featured-ribbon {
+      top: 8px;
+      right: -6px;
+    }
+
+    .featured-ribbon-content {
+      padding: 6px 18px 6px 12px;
+      font-size: 0.7rem;
+      min-width: 70px;
+    }
+
+    .featured-ribbon-content::after {
+      border-width: 14px 0 14px 6px;
+      right: -6px;
+    }
+
+    .featured-ribbon-content::before {
+      border-width: 12px 0 12px 4px;
+      right: -4px;
+    }
+  }
+
+  /* Organic decorative elements (general purpose) */
+  .organic-line-separator {
+    position: relative;
+    height: 1px;
+    width: 60px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent 0%, var(--blue-main) 20%, var(--blue-main) 80%, transparent 100%);
+    opacity: 0.6;
+  }
+
+  /* Incomplete border box */
+  .incomplete-border-box {
+    position: relative;
+    padding: 2rem; /* Default padding for smaller screens */
+    @screen md {
+      padding: 2.5rem; /* Larger padding for medium screens and up */
+    }
+    background-color: var(--white-semi);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .incomplete-border-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Custom button styles */
+  .btn-handmade {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2.5rem;
+    font-family: var(--font-quicksand), sans-serif;
+    font-weight: 500;
+    color: var(--brown-chocolate);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+
+  .btn-handmade::before,
+  .btn-handmade::after {
+    content: "";
+    position: absolute;
+    border: 2px solid var(--blue-main);
+    transition: all 0.3s ease;
+  }
+
+  /* Top-left border */
+  .btn-handmade::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-right: none;
+    border-bottom: none;
+    transform: scale(0.95); /* Slightly smaller to give "incomplete" look */
+    opacity: 0.8;
+  }
+
+  /* Bottom-right border */
+  .btn-handmade::after {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-left: none;
+    border-top: none;
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+
+  .btn-handmade:hover::before,
+  .btn-handmade:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    border-color: var(--blue-accent);
+  }
+
+  .btn-handmade:hover {
+    color: #ffffff; /* White text on hover */
+    background-color: var(--blue-accent);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--cream-warm);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue-main);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-accent);
+  }
+
+  /* Utilidad para truncar texto */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Asegurar que las tarjetas tengan altura mínima consistente */
+  .product-card-container {
+    min-height: 640px;
+  }
+
+  .featured-card-container {
+    min-height: 480px;
+  }
 }
 
 /* Paper texture background */
@@ -246,128 +691,4 @@
 
 .handmade-line:nth-child(5) {
   animation-delay: 1.2s;
-}
-
-/* Organic decorative elements (general purpose) */
-.organic-line-separator {
-  position: relative;
-  height: 1px;
-  width: 60px;
-  margin: 0 auto;
-  background: linear-gradient(90deg, transparent 0%, var(--blue-main) 20%, var(--blue-main) 80%, transparent 100%);
-  opacity: 0.6;
-}
-
-/* Incomplete border box */
-.incomplete-border-box {
-  position: relative;
-  padding: 2rem; /* Default padding for smaller screens */
-  @screen md {
-    padding: 2.5rem; /* Larger padding for medium screens and up */
-  }
-  background-color: var(--white-semi);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.incomplete-border-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.08);
-}
-
-/* Custom button styles */
-.btn-handmade {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 2.5rem;
-  font-family: var(--font-quicksand), sans-serif;
-  font-weight: 500;
-  color: var(--brown-chocolate);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  transition: color 0.3s ease;
-}
-
-.btn-handmade::before,
-.btn-handmade::after {
-  content: "";
-  position: absolute;
-  border: 2px solid var(--blue-main);
-  transition: all 0.3s ease;
-}
-
-/* Top-left border */
-.btn-handmade::before {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-right: none;
-  border-bottom: none;
-  transform: scale(0.95); /* Slightly smaller to give "incomplete" look */
-  opacity: 0.8;
-}
-
-/* Bottom-right border */
-.btn-handmade::after {
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border-left: none;
-  border-top: none;
-  transform: scale(0.95);
-  opacity: 0.8;
-}
-
-.btn-handmade:hover::before,
-.btn-handmade:hover::after {
-  transform: scale(1);
-  opacity: 1;
-  border-color: var(--blue-accent);
-}
-
-.btn-handmade:hover {
-  color: #ffffff; /* White text on hover */
-  background-color: var(--blue-accent);
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .mobile-lines {
-    transform: rotate(0deg) !important;
-  }
-
-  .mobile-padding {
-    padding: 1.5rem !important;
-  }
-
-  .mobile-text {
-    font-size: 90% !important;
-  }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--cream-warm);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--blue-main);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--blue-accent);
 }

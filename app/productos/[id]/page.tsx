@@ -1,98 +1,10 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { CornerLines } from "@/components/corner-lines"
+import { FeaturedRibbon } from "@/components/featured-ribbon"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react"
-
-// Datos de productos detallados (simulando una base de datos o API)
-const detailedProductos = [
-  {
-    id: 1,
-    nombre: "Torta de Chocolate Belga",
-    descripcion:
-      "Exquisita torta elaborada con chocolate belga premium, ganache sedoso y decoración artesanal. Un placer intenso para los amantes del chocolate.",
-    precio: "$45.000",
-    categoria: "Tortas",
-    imagen: "/placeholder.svg?height=400&width=400&text=Torta+Chocolate",
-    porciones: 10,
-    beneficios: [
-      "Chocolate belga de alta calidad",
-      "Textura húmeda y sabor intenso",
-      "Ideal para celebraciones especiales",
-    ],
-    historia:
-      "La torta de chocolate, un clásico atemporal, ha evolucionado a lo largo de los siglos. Nuestra receta se inspira en las tradiciones europeas, perfeccionada para el paladar moderno.",
-  },
-  {
-    id: 2,
-    nombre: "Cheesecake de Frutos del Bosque",
-    descripcion:
-      "Cremoso cheesecake con base de galleta artesanal y compota de frutos rojos frescos. Ligero y refrescante, perfecto para cualquier momento.",
-    precio: "$38.000",
-    categoria: "Postres",
-    imagen: "/placeholder.svg?height=400&width=400&text=Cheesecake",
-    porciones: 8,
-    beneficios: ["Frescura de frutos rojos", "Textura suave y cremosa", "Base crujiente de galleta"],
-    historia:
-      "El cheesecake tiene raíces antiguas, pero la versión moderna se popularizó en Nueva York. Nuestra versión con frutos del bosque es un homenaje a la frescura y la simplicidad.",
-  },
-  {
-    id: 3,
-    nombre: "Cookies Artesanales",
-    descripcion:
-      "Deliciosas cookies elaboradas con técnica tradicional, disponibles en 6 sabores únicos. Crocantes por fuera, suaves por dentro, con chips de chocolate, un clásico para cualquier momento.",
-    precio: "$24.000",
-    categoria: "Cookies",
-    imagen: "/placeholder.svg?height=400&width=400&text=Cookies",
-    porciones: 12,
-    beneficios: [
-      "Perfectas para cualquier momento del día",
-      "Textura crocante y suave a la vez",
-      "Clásicas chips de chocolate",
-    ],
-    historia:
-      "Las cookies surgieron en Estados Unidos en la década de 1930 y se popularizaron gracias a su receta fácil y sabor irresistible.",
-  },
-  {
-    id: 4,
-    nombre: "Tarta de Limón Meyer",
-    descripcion:
-      "Refrescante tarta con crema de limón Meyer y merengue italiano dorado. Un equilibrio perfecto entre acidez y dulzura.",
-    precio: "$35.000",
-    categoria: "Tartas",
-    imagen: "/placeholder.svg?height=400&width=400&text=Tarta+Limón",
-    porciones: 8,
-    beneficios: ["Sabor cítrico y refrescante", "Merengue suave y dorado", "Ideal para postre ligero"],
-    historia:
-      "Las tartas de limón son un postre clásico francés. Nuestra versión con limón Meyer le da un toque especial y aromático.",
-  },
-  {
-    id: 5,
-    nombre: "Brownies de Nuez Pecana",
-    descripcion:
-      "Intensos brownies con chocolate oscuro 70% y nueces pecanas caramelizadas. Un bocado denso y chocolatoso.",
-    precio: "$28.000",
-    categoria: "Brownies",
-    imagen: "/placeholder.svg?height=400&width=400&text=Brownies",
-    porciones: 9,
-    beneficios: ["Chocolate oscuro de alta intensidad", "Nueces pecanas crujientes", "Textura fudgy y deliciosa"],
-    historia:
-      "Los brownies nacieron en Estados Unidos a finales del siglo XIX. Se dice que fueron creados por error, pero rápidamente se convirtieron en un favorito mundial.",
-  },
-  {
-    id: 6,
-    nombre: "Red Velvet Clásico",
-    descripcion:
-      "Tradicional red velvet con frosting de queso crema y decoración vintage. Un clásico elegante y delicioso.",
-    precio: "$42.000",
-    categoria: "Tortas",
-    imagen: "/placeholder.svg?height=400&width=400&text=Red+Velvet",
-    porciones: 10,
-    beneficios: ["Sabor suave y aterciopelado", "Frosting cremoso de queso", "Apariencia vibrante y elegante"],
-    historia:
-      "El Red Velvet es un pastel con una historia rica y misteriosa, popularizado en el sur de Estados Unidos. Su color distintivo y sabor único lo hacen inolvidable.",
-  },
-]
+import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight } from "lucide-react"
+import productos from "@/data/productos"
 
 interface ProductPageProps {
   params: { id: string }
@@ -100,8 +12,8 @@ interface ProductPageProps {
 
 export default function ProductPage({ params }: ProductPageProps) {
   const productId = Number.parseInt(params.id)
-  const productIndex = detailedProductos.findIndex((p) => p.id === productId)
-  const product = detailedProductos[productIndex]
+  const productIndex = productos.findIndex((p) => p.id === productId)
+  const product = productos[productIndex]
 
   if (!product) {
     return (
@@ -111,37 +23,143 @@ export default function ProductPage({ params }: ProductPageProps) {
     )
   }
 
-  const prevProduct = productIndex > 0 ? detailedProductos[productIndex - 1] : null
-  const nextProduct = productIndex < detailedProductos.length - 1 ? detailedProductos[productIndex + 1] : null
+  const prevProduct = productIndex > 0 ? productos[productIndex - 1] : null
+  const nextProduct = productIndex < productos.length - 1 ? productos[productIndex + 1] : null
 
   return (
     <div className="min-h-screen py-8 px-4 md:py-16 md:px-6 bg-cream-warm paper-texture">
-      <div className="max-w-4xl mx-auto incomplete-border-box relative mb-16">
-        {" "}
-        {/* Added mb-16 for spacing */}
-        <CornerLines />
-        <div className="flex justify-between mb-8">
-          <Link href={prevProduct ? `/productos/${prevProduct.id}` : "#"}>
-            <Button className="bg-blue-main text-white hover:bg-blue-accent" disabled={!prevProduct}>
-              <ArrowLeft className="w-4 h-4 mr-2" /> Anterior
+      {/* Enhanced Navigation Header */}
+      <div className="max-w-4xl mx-auto mb-8">
+        <div className="flex items-center justify-between mb-6">
+          {/* Back to Products */}
+          <Link href="/productos">
+            <Button className="flex items-center gap-2 bg-blue-light/50 text-blue-accent hover:bg-blue-light border border-blue-main/20 rounded-full px-4 py-2">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Todos los productos</span>
+              <span className="sm:hidden">Productos</span>
             </Button>
           </Link>
-          <Link href={nextProduct ? `/productos/${nextProduct.id}` : "#"}>
-            <Button className="bg-blue-main text-white hover:bg-blue-accent" disabled={!nextProduct}>
-              Siguiente <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+
+          {/* Product Counter */}
+          <div className="text-center">
+            <span className="text-sm font-body text-brown-chocolate/60">
+              Producto {productIndex + 1} de {productos.length}
+            </span>
+          </div>
+
+          {/* Navigation Dots */}
+          <div className="flex items-center gap-1">
+            {productos.map((_, index) => (
+              <Link key={index} href={`/productos/${productos[index].id}`}>
+                <div
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === productIndex ? "bg-blue-main w-6" : "bg-blue-main/30 hover:bg-blue-main/60"
+                  }`}
+                />
+              </Link>
+            ))}
+          </div>
         </div>
+
+        {/* Enhanced Previous/Next Navigation */}
+        <div className="flex items-center justify-between gap-4">
+          {/* Previous Product */}
+          {prevProduct ? (
+            <Link href={`/productos/${prevProduct.id}`} className="flex-1 max-w-xs">
+              <div className="product-nav-card group">
+                <div className="flex items-center gap-3">
+                  <ChevronLeft className="w-5 h-5 text-blue-main group-hover:text-blue-accent transition-colors" />
+                  <div className="product-nav-image">
+                    <Image
+                      src={prevProduct.imagen || "/placeholder.svg"}
+                      alt={prevProduct.nombre}
+                      fill
+                      className="object-cover rounded-md"
+                      sizes="60px"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-body text-blue-main/70 mb-1">Anterior</p>
+                    <p className="font-display font-semibold text-blue-accent text-sm truncate">{prevProduct.nombre}</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="flex-1 max-w-xs opacity-50">
+              <div className="product-nav-card-disabled">
+                <div className="flex items-center gap-3">
+                  <ChevronLeft className="w-5 h-5 text-brown-chocolate/30" />
+                  <div className="product-nav-image bg-gray-200"></div>
+                  <div className="flex-1">
+                    <p className="text-xs font-body text-brown-chocolate/40 mb-1">Anterior</p>
+                    <p className="font-display text-brown-chocolate/40 text-sm">No disponible</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Current Product Indicator */}
+          <div className="flex-shrink-0 px-4">
+            <div className="w-3 h-3 rounded-full bg-blue-main shadow-lg"></div>
+          </div>
+
+          {/* Next Product */}
+          {nextProduct ? (
+            <Link href={`/productos/${nextProduct.id}`} className="flex-1 max-w-xs">
+              <div className="product-nav-card group">
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 min-w-0 text-right">
+                    <p className="text-xs font-body text-blue-main/70 mb-1">Siguiente</p>
+                    <p className="font-display font-semibold text-blue-accent text-sm truncate">{nextProduct.nombre}</p>
+                  </div>
+                  <div className="product-nav-image">
+                    <Image
+                      src={nextProduct.imagen || "/placeholder.svg"}
+                      alt={nextProduct.nombre}
+                      fill
+                      className="object-cover rounded-md"
+                      sizes="60px"
+                    />
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-blue-main group-hover:text-blue-accent transition-colors" />
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="flex-1 max-w-xs opacity-50">
+              <div className="product-nav-card-disabled">
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 text-right">
+                    <p className="text-xs font-body text-brown-chocolate/40 mb-1">Siguiente</p>
+                    <p className="font-display text-brown-chocolate/40 text-sm">No disponible</p>
+                  </div>
+                  <div className="product-nav-image bg-gray-200"></div>
+                  <ChevronRight className="w-5 h-5 text-brown-chocolate/30" />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Main Product Content */}
+      <div className="max-w-4xl mx-auto incomplete-border-box relative mb-16">
+        <CornerLines />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-12">
-          <div className="relative rounded-lg overflow-hidden shadow-md">
+          <div className="product-detail-container shadow-md relative">
             <Image
               src={product.imagen || "/placeholder.svg"}
               alt={product.nombre}
-              width={400}
-              height={400}
-              className="w-full h-auto object-cover"
-              priority={true} // Set priority for the main product image
+              fill
+              className="product-detail-image"
+              priority={true}
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
+            {/* Listón de destacado para página de detalles */}
+            {product.destacado && <FeaturedRibbon />}
           </div>
           <div className="space-y-6">
             <h1 className="text-4xl font-display font-bold text-blue-accent tracking-wide">{product.nombre}</h1>
@@ -160,10 +178,9 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </div>
+
         {/* History Section */}
         <div className="incomplete-border-box relative bg-blue-light/50 p-6 rounded-lg mb-16">
-          {" "}
-          {/* Standardized mb-16 */}
           <CornerLines />
           <div className="flex items-center gap-3 mb-4">
             <BookOpen className="w-6 h-6 text-blue-main" />
@@ -171,14 +188,40 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
           <p className="text-base font-body text-brown-chocolate leading-relaxed">{product.historia}</p>
         </div>
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link href="/productos">
             <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent">Volver a Productos</Button>
           </Link>
           <Link href="/contacto">
-            <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent">Ir a Contacto</Button>
+            <Button className="btn-handmade bg-blue-main text-white hover:bg-blue-accent">Hacer Pedido</Button>
           </Link>
+        </div>
+      </div>
+
+      {/* Bottom Navigation - Mobile Friendly */}
+      <div className="max-w-4xl mx-auto mt-12">
+        <div className="flex items-center justify-center gap-4 sm:hidden">
+          {prevProduct && (
+            <Link href={`/productos/${prevProduct.id}`}>
+              <Button className="bg-blue-main text-white hover:bg-blue-accent rounded-full p-3">
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+            </Link>
+          )}
+
+          <span className="text-sm font-body text-brown-chocolate/60 px-4">
+            {productIndex + 1} / {productos.length}
+          </span>
+
+          {nextProduct && (
+            <Link href={`/productos/${nextProduct.id}`}>
+              <Button className="bg-blue-main text-white hover:bg-blue-accent rounded-full p-3">
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

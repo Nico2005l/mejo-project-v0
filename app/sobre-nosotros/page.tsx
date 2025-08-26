@@ -40,8 +40,8 @@ export default function SobreNosotrosPage() {
           <div className="relative">
             <div className="incomplete-border-box p-0">
               <Image
-                src="/placeholder.svg?height=500&width=600&text=Nuestra+Cocina"
-                alt="Nuestra cocina artesanal"
+                src="/media/logo.png"
+                alt="Logo de Mejo Pastelería sobre azulejos artesanales"
                 width={600}
                 height={500}
                 className="w-full h-full object-cover rounded-lg"

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, Clock, PhoneIcon as Whatsapp, Instagram, Square } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, WheatIcon as Whatsapp, Instagram, Heart, MessageCircle } from "lucide-react"
 import { CornerLines } from "@/components/corner-lines"
 import Image from "next/image"
 
@@ -10,8 +10,6 @@ export default function ContactoPage() {
     <div className="min-h-screen">
       {/* Connect with Us Section */}
       <section className="bg-cream-warm paper-texture py-16 px-4 text-center mb-16">
-        {" "}
-        {/* Added mb-16 for spacing */}
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-blue-accent mb-6 tracking-wide">
             ¡Conectá con nosotros!
@@ -31,40 +29,102 @@ export default function ContactoPage() {
             </Button>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-blue-accent mb-10 tracking-wide">
-            Últimos posts
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                src: "/placeholder.svg?height=400&width=400&text=Post+1",
-                alt: "Slice of carrot cake",
-              },
-              {
-                src: "/placeholder.svg?height=400&width=400&text=Post+2",
-                alt: "Baking ingredients in bowls",
-              },
-              {
-                src: "/placeholder.svg?height=400&width=400&text=Post+3",
-                alt: "Meringue pie",
-              },
-            ].map((post, index) => (
-              <div key={index} className="relative overflow-hidden rounded-lg shadow-md group">
-                <Image
-                  src={post.src || "/placeholder.svg"}
-                  alt={post.alt}
-                  width={400}
-                  height={400}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3 bg-black/50 rounded-full p-1.5">
-                  <Instagram className="w-4 h-4 text-white" />
+          {/* Instagram Feed Section */}
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-blue-accent mb-8 tracking-wide">
+              Últimas publicaciones
+            </h2>
+            <div className="organic-line-separator h-8 mb-10"></div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  src: "/media/carrot.jpg",
+                  alt: "Deliciosa Carrot Cake recién horneada",
+                  likes: "127",
+                  caption:
+                    "Nuestra famosa Carrot Cake con su irresistible cobertura cremosa 🥕✨ #CarrotCake #Artesanal",
+                  timeAgo: "2h",
+                },
+                {
+                  src: "/media/chesscake.jpg",
+                  alt: "Cheesecake con frutos rojos",
+                  likes: "89",
+                  caption:
+                    "Cheesecake con coulis de frutos rojos frescos 🍓 Perfecta para compartir momentos especiales",
+                  timeAgo: "1d",
+                },
+                {
+                  src: "/media/cookies.jpg",
+                  alt: "Cookies con chips de chocolate",
+                  likes: "156",
+                  caption: "Cookies crocantes por fuera, suaves por dentro 🍪 El clásico que nunca falla #Cookies",
+                  timeAgo: "3d",
+                },
+              ].map((post, index) => (
+                <div key={index} className="instagram-post-card group">
+                  <div className="relative overflow-hidden rounded-lg">
+                    {/* Instagram Post Image */}
+                    <div className="instagram-image-container">
+                      <Image
+                        src={post.src || "/placeholder.svg"}
+                        alt={post.alt}
+                        fill
+                        className="instagram-image"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+
+                      {/* Instagram Overlay on Hover */}
+                      <div className="instagram-overlay">
+                        <div className="flex items-center justify-center space-x-6 text-white">
+                          <div className="flex items-center space-x-2">
+                            <Heart className="w-6 h-6 fill-current" />
+                            <span className="font-semibold">{post.likes}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <MessageCircle className="w-6 h-6" />
+                            <span className="font-semibold">12</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Instagram Post Info */}
+                    <div className="instagram-post-info">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-8 h-8 rounded-full bg-instagram-gradient flex items-center justify-center">
+                            <Instagram className="w-4 h-4 text-white" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-sm text-brown-chocolate">mejo.pasteleria</p>
+                            <p className="text-xs text-brown-chocolate/60">{post.timeAgo}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Heart className="w-4 h-4 text-brown-chocolate/60" />
+                          <span className="text-xs text-brown-chocolate/60">{post.likes}</span>
+                        </div>
+                      </div>
+
+                      <p className="text-sm text-brown-chocolate/80 leading-relaxed line-clamp-2">{post.caption}</p>
+
+                      <button className="mt-3 text-xs text-blue-main hover:text-blue-accent transition-colors font-medium">
+                        Ver en Instagram
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute top-3 right-3 bg-black/50 rounded-sm p-1">
-                  <Square className="w-3 h-3 text-white" />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Call to Action */}
+            <div className="mt-10">
+              <Button className="bg-instagram-gradient text-white hover:opacity-90 rounded-full px-8 py-3 text-base font-body font-medium flex items-center gap-2 mx-auto">
+                <Instagram className="w-5 h-5" />
+                Ver más en Instagram
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -167,9 +227,7 @@ export default function ContactoPage() {
               <div className="incomplete-border-box text-center relative">
                 <CornerLines />
                 <MapPin className="w-8 h-8 text-blue-main mx-auto mb-6" />
-                <h3 className="font-display font-semibold text-blue-accent mb-4 text-xl tracking-wide">
-                  Ubicación
-                </h3>
+                <h3 className="font-display font-semibold text-blue-accent mb-4 text-xl tracking-wide">Ubicación</h3>
                 <p className="font-body text-brown-chocolate/80 leading-relaxed">
                   Calle 85 #12-34
                   <br />

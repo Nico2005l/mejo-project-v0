@@ -1,16 +1,20 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import { CornerLines } from "@/components/corner-lines"
-import { AnimatedHeroLines } from "@/components/animated-hero-lines" // Import the new component
+import { AnimatedHeroLines } from "@/components/animated-hero-lines"
+import productos from "@/data/productos"
+import { ProductCard } from "@/components/product-card"
 
 export default function HomePage() {
+  // Obtener productos destacados y algunos productos adicionales para mostrar
+  const productosDestacados = productos.filter((p) => p.destacado)
+  const otrosProductos = productos.filter((p) => !p.destacado).slice(0, 2)
+  const productosParaMostrar = [...productosDestacados, ...otrosProductos].slice(0, 3)
+
   return (
     <div className="min-h-screen py-8 px-4 md:py-16 md:px-6">
       {/* Hero Section */}
       <section className="py-8 px-4 md:py-16 md:px-6 mb-16">
-        {" "}
-        {/* Added mb-16 for spacing */}
         <div className="max-w-4xl mx-auto relative">
           {/* Instagram Handle */}
           <div className="absolute top-4 right-4 md:top-6 md:right-6 z-10">
@@ -29,8 +33,6 @@ export default function HomePage() {
               </h1>
 
               <div className="space-y-4 mb-12 text-base md:text-lg lg:text-xl">
-                {" "}
-                {/* Responsive text size */}
                 <p className="font-body text-brown-chocolate leading-relaxed" style={{ lineHeight: "1.8em" }}>
                   Dulces creaciones artesanales horneadas con pasión,
                 </p>
@@ -49,11 +51,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Removed Spacer */}
+
       {/* Featured Products Preview */}
       <section className="py-16 px-6 mb-16">
-        {" "}
-        {/* Added mb-16 for spacing */}
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-blue-accent mb-6 tracking-wide">
@@ -66,56 +66,13 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-            {" "}
-            {/* Responsive grid */}
-            {[
-              {
-                name: "Tortas Artesanales",
-                description: "Creaciones únicas para ocasiones especiales",
-                image: "/placeholder.svg?height=256&width=400&text=Torta+Artesanal",
-              },
-              {
-                name: "Postres Boutique",
-                description: "Pequeñas delicias con grandes sabores",
-                image: "/placeholder.svg?height=256&width=400&text=Postre+Boutique",
-              },
-              {
-                name: "Cookies Artesanales",
-                description: "Dulces momentos horneados con amor",
-                image: "/placeholder.svg?height=256&width=400&text=Cookies+Artesanales",
-              },
-            ].map((item, index) => (
-              <div key={index} className="group relative block">
-                {" "}
-                {/* Changed to block for full link area */}
-                <div className="incomplete-border-box relative text-center h-[520px] flex flex-col justify-between">
-                  {" "}
-                  {/* Added fixed height and flex properties */}
-                  <CornerLines />
-                  <div className="relative mb-6 overflow-hidden rounded-lg">
-                    <Image
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.name}
-                      width={400} // Explicit width
-                      height={256} // Explicit height to match h-64
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-                      priority={index === 0} // Set priority for the first featured image
-                    />
-                  </div>
-                  <div className="space-y-4 p-6 pt-0 flex-grow">
-                    {" "}
-                    {/* Added padding for text content */}
-                    <h3 className="text-xl md:text-2xl font-display font-semibold text-blue-accent mb-3 tracking-wide">
-                      {item.name}
-                    </h3>
-                    <p className="text-base font-body text-brown-chocolate/80 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              </div>
+            {productosParaMostrar.map((producto, index) => (
+              <ProductCard key={producto.id} producto={producto} variant="default" priority={index === 0} />
             ))}
           </div>
         </div>
       </section>
+
       {/* Philosophy Section */}
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">

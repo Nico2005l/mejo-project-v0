@@ -14,7 +14,7 @@ export function Footer() {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-display font-bold text-blue-accent mb-6 tracking-wide">Mejo</h3>
             <div className="organic-line-separator h-8 mb-8"></div>
-            <p className="font-body text-brown-chocolate/80 leading-relaxed max-w-2xl mx-auto">
+            <p className="font-body mt-8 text-brown-chocolate/80 leading-relaxed max-w-2xl mx-auto">
               Pastelería artesanal boutique dedicada a crear momentos dulces e inolvidables con productos de la más alta
               calidad.
             </p>

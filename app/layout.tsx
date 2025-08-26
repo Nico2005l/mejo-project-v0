@@ -23,7 +23,7 @@ const quicksand = Quicksand({
 export const metadata: Metadata = {
   title: "Mejo Pastelería - Dulces creaciones artesanales",
   description: "Pastelería artesanal con productos elaborados con amor y dedicación",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
