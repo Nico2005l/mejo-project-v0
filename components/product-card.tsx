@@ -47,7 +47,7 @@ export function ProductCard({ producto, variant = "default", priority = false }:
         {/* Content with flex-grow to occupy remaining space */}
         <div className="flex-grow flex flex-col justify-between p-3 sm:p-4 lg:p-6 pt-0">
           <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-semibold text-blue-accent tracking-wide leading-tight">
+            <h3 className="text-lg sm:text-3xl lg:text-2xl font-display font-semibold text-blue-accent tracking-wide leading-tight">
               {producto.nombre}
             </h3>
             <p className="text-sm sm:text-base font-body text-brown-chocolate/80 leading-relaxed px-1">

@@ -219,9 +219,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             </Link>
           )}
 
-          <span className="text-xs sm:text-sm font-body text-brown-chocolate/60 px-3 sm:px-4">
-            {productIndex + 1} / {productos.length}
-          </span>
+          
 
           {nextProduct && (
             <Link href={`/productos/${nextProduct.id}`}>
