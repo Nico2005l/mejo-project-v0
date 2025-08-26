@@ -21,8 +21,11 @@ const quicksand = Quicksand({
 })
 
 export const metadata: Metadata = {
-  title: "Mejo Pastelería - Dulces creaciones artesanales",
+  title: "Mejo Pastelería",
   description: "Pastelería artesanal con productos elaborados con amor y dedicación",
+  icons: {
+    icon: "/media/logo.png",
+  },
     generator: 'v0.app'
 }
 
